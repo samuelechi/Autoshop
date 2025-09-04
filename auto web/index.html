@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Auto Shop - Professional Car Services</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?fit=crop&w=1920&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            padding-top: 60px; /* Prevent navbar overlap */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background: #ff6b6b;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #e55a5a;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 4rem 2rem;
+            background: #fff;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Appointment Section */
+        .appointment {
+            padding: 4rem 2rem;
+            background: #f4f4f4;
+            text-align: center;
+        }
+
+        .appointment h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .appointment form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .appointment input, .appointment select, .appointment textarea {
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .appointment textarea {
+            resize: vertical;
+        }
+
+        /* Quote Calculator Section */
+        .quote {
+            padding: 4rem 2rem;
+            background: #fff;
+            text-align: center;
+        }
+
+        .quote h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .quote form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .quote input, .quote textarea {
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .quote textarea {
+            resize: vertical;
+        }
+
+        .quote .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            text-align: left;
+        }
+
+        .quote .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quote .estimate {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 4rem 2rem;
+            background: #fff;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 2rem;
+            background: #1a1a1a;
+            color: #fff;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+
+        .modal-content p {
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+            text-align: left;
+        }
+
+        .modal-content .btn {
+            margin-top: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .navbar .nav-links a {
+                margin: 0 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Elite Auto Shop</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#appointment">Book Appointment</a>
+                <a href="#quote">Request Quote</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Elite Auto Shop</h1>
+            <p>Your trusted partner for top-quality auto repair and maintenance services.</p>
+            <a href="#appointment" class="btn">Book an Appointment</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2>Our Services</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <h3>Oil Change</h3>
+                <p>Keep your engine running smoothly with our quick and reliable oil change services.</p>
+            </div>
+            <div class="service-card">
+                <h3>Tire Services</h3>
+                <p>From tire rotations to replacements, we ensure your tires are road-ready.</p>
+            </div>
+            <div class="service-card">
+                <h3>Brake Repair</h3>
+                <p>Safe and efficient brake inspections and repairs for your peace of mind.</p>
+            </div>
+            <div class="service-card">
+                <h3>Engine Diagnostics</h3>
+                <p>Advanced diagnostics to identify and fix engine issues quickly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Booking Section -->
+    <section id="appointment" class="appointment">
+        <h2>Book an Appointment</h2>
+        <form id="appointment-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="tel" name="phone" placeholder="Your Phone Number" required>
+            <select name="service" required>
+                <option value="" disabled selected>Select a Service</option>
+                <option value="oil-change">Oil Change</option>
+                <option value="tire-service">Tire Service</option>
+                <option value="brake-repair">Brake Repair</option>
+                <option value="engine-diagnostics">Engine Diagnostics</option>
+            </select>
+            <input type="date" name="date" required>
+            <textarea name="message" placeholder="Additional Notes" rows="5"></textarea>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </section>
+
+    <!-- Quote Calculator Section -->
+    <section id="quote" class="quote">
+        <h2>Request a Quote</h2>
+        <form id="quote-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="tel" name="phone" placeholder="Your Phone Number" required>
+            <input type="text" name="vehicle" placeholder="Vehicle Make & Model (e.g., Toyota Camry 2020)" required>
+            <input type="number" name="mileage" placeholder="Vehicle Mileage (miles)" min="0" required>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="services" value="oil-change" data-price="50"> Oil Change ($50)</label>
+                <label><input type="checkbox" name="services" value="tire-service" data-price="100"> Tire Service ($100)</label>
+                <label><input type="checkbox" name="services" value="brake-repair" data-price="150"> Brake Repair ($150)</label>
+                <label><input type="checkbox" name="services" value="engine-diagnostics" data-price="80"> Engine Diagnostics ($80)</label>
+            </div>
+            <textarea name="description" placeholder="Additional Notes (e.g., specific issues)" rows="5"></textarea>
+            <div class="estimate">Estimated Total: $0</div>
+            <button type="submit" class="btn">Submit Quote Request</button>
+        </form>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p>"Elite Auto Shop fixed my brakes in no time! Professional and affordable."</p>
+                <p><strong>- John D.</strong></p>
+            </div>
+            <div class="testimonial-card">
+                <p>"Their engine diagnostics saved me from a costly repair. Highly recommend!"</p>
+                <p><strong>- Sarah M.</strong></p>
+            </div>
+            <div class="testimonial-card">
+                <p>"Friendly staff and quick service. My car runs like new!"</p>
+                <p><strong>- Mike T.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <p><strong>Phone:</strong> (123) 456-7890</p>
+            <p><strong>Email:</strong> info@eliteautoshop.com</p>
+            <p><strong>Address:</strong> 123 Auto Lane, City, State 12345</p>
+            <p><strong>Hours:</strong> Mon-Fri: 8 AM - 6 PM, Sat: 9 AM - 4 PM</p>
+        </div>
+    </section>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <h3>Submission Confirmed</h3>
+            <div id="modal-body"></div>
+            <button type="button" class="btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Elite Auto Shop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Debug Helper
+        function debug(message) {
+            console.log(`[DEBUG] ${message}`);
+        }
+
+        // Modal Functions
+        function showModal(content) {
+            debug('Showing modal');
+            const modal = document.getElementById('confirmation-modal');
+            const modalBody = document.getElementById('modal-body');
+            if (!modal || !modalBody) {
+                console.error('Error: Modal or modal-body not found');
+                alert('Error: Modal not found. Please check the HTML.');
+                return;
+            }
+            modalBody.innerHTML = content;
+            modal.style.display = 'flex';
+            debug('Modal displayed successfully');
+        }
+
+        function closeModal() {
+            debug('Closing modal');
+            const modal = document.getElementById('confirmation-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            } else {
+                console.error('Error: Modal not found');
+            }
+        }
+
+        // Appointment Form Submission
+        const appointmentForm = document.getElementById('appointment-form');
+        if (appointmentForm) {
+            debug('Appointment form initialized');
+            appointmentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                debug('Appointment form submitted');
+                try {
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+                    console.log('Appointment Data:', data); // Replace with API call in production
+
+                    const content = `
+                        <p><strong>Name:</strong> ${data.name || 'N/A'}</p>
+                        <p><strong>Email:</strong> ${data.email || 'N/A'}</p>
+                        <p><strong>Phone:</strong> ${data.phone || 'N/A'}</p>
+                        <p><strong>Service:</strong> ${data.service ? data.service.replace('-', ' ').toUpperCase() : 'N/A'}</p>
+                        <p><strong>Date:</strong> ${data.date || 'N/A'}</p>
+                        ${data.message ? `<p><strong>Notes:</strong> ${data.message}</p>` : ''}
+                        <p>Thank you for booking with Elite Auto Shop! We will contact you soon to confirm.</p>
+                    `;
+                    showModal(content);
+                    this.reset();
+                    debug('Appointment form reset');
+                } catch (error) {
+                    console.error('Appointment form error:', error);
+                    alert('Error processing appointment. Please try again.');
+                }
+            });
+        } else {
+            console.error('Error: Appointment form not found');
+        }
+
+        // Quote Form Submission
+        const quoteForm = document.getElementById('quote-form');
+        if (quoteForm) {
+            debug('Quote form initialized');
+            const checkboxes = quoteForm.querySelectorAll('input[name="services"]');
+            const mileageInput = quoteForm.querySelector('input[name="mileage"]');
+            const estimateDisplay = quoteForm.querySelector('.estimate');
+
+            if (checkboxes.length && mileageInput && estimateDisplay) {
+                debug('Quote form elements found');
+
+                function updateEstimate() {
+                    debug('Updating estimate');
+                    let total = 0;
+                    checkboxes.forEach(checkbox => {
+                        if (checkbox.checked) {
+                            total += parseFloat(checkbox.getAttribute('data-price')) || 0;
+                        }
+                    });
+                    const mileage = parseInt(mileageInput.value) || 0;
+                    const mileageFee = Math.floor(mileage / 50000) * 10;
+                    total += mileageFee;
+                    estimateDisplay.textContent = `Estimated Total: $${total.toFixed(2)}`;
+                }
+
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', updateEstimate);
+                });
+                mileageInput.addEventListener('input', updateEstimate);
+
+                quoteForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    debug('Quote form submitted');
+                    try {
+                        const formData = new FormData(this);
+                        const selectedServices = Array.from(checkboxes)
+                            .filter(checkbox => checkbox.checked)
+                            .map(checkbox => ({
+                                name: checkbox.value.replace('-', ' ').toUpperCase(),
+                                price: parseFloat(checkbox.getAttribute('data-price')) || 0
+                            }));
+                        const data = {
+                            ...Object.fromEntries(formData),
+                            services: selectedServices.map(service => service.name),
+                            estimatedTotal: parseFloat(estimateDisplay.textContent.replace('Estimated Total: $', '')) || 0
+                        };
+                        console.log('Quote Request Data:', data); // Replace with API call in production
+
+                        const mileage = parseInt(data.mileage || 0);
+                        const mileageFee = Math.floor(mileage / 50000) * 10;
+                        const content = `
+                            <p><strong>Name:</strong> ${data.name || 'N/A'}</p>
+                            <p><strong>Email:</strong> ${data.email || 'N/A'}</p>
+                            <p><strong>Phone:</strong> ${data.phone || 'N/A'}</p>
+                            <p><strong>Vehicle:</strong> ${data.vehicle || 'N/A'}</p>
+                            <p><strong>Mileage:</strong> ${mileage} miles</p>
+                            <p><strong>Selected Services:</strong></p>
+                            <ul>
+                                ${selectedServices.length ? selectedServices.map(service => `<li>${service.name}: $${service.price.toFixed(2)}</li>`).join('') : '<li>No services selected</li>'}
+                                ${mileageFee ? `<li>Mileage Fee: $${mileageFee.toFixed(2)}</li>` : ''}
+                            </ul>
+                            <p><strong>Estimated Total:</strong> $${data.estimatedTotal.toFixed(2)}</p>
+                            ${data.description ? `<p><strong>Notes:</strong> ${data.description}</p>` : ''}
+                            <p>Thank you for your quote request! We will respond with a detailed quote soon.</p>
+                        `;
+                        showModal(content);
+                        this.reset();
+                        estimateDisplay.textContent = 'Estimated Total: $0';
+                        debug('Quote form reset');
+                    } catch (error) {
+                        console.error('Quote form error:', error);
+                        alert('Error processing quote request. Please try again.');
+                    }
+                });
+            } else {
+                console.error('Error: Quote form elements (checkboxes, mileage, estimate) not found');
+            }
+        } else {
+            console.error('Error: Quote form not found');
+        }
+
+        // Smooth Scroll for Navigation
+        const navLinks = document.querySelectorAll('.nav-links a');
+        if (navLinks.length) {
+            debug('Navigation links initialized');
+            navLinks.forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 60,
+                            behavior: 'smooth'
+                        });
+                        debug(`Scrolled to section #${targetId}`);
+                    } else {
+                        console.error(`Error: Section #${targetId} not found`);
+                    }
+                });
+            });
+        } else {
+            console.error('Error: Navigation links not found');
+        }
+    </script>
+</body>
+</html>
